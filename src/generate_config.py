@@ -112,3 +112,40 @@ print(
     )
 )
 
+print("# Classcharts Environment")
+
+print("export CLASSCHARTS_USERNAME='{}'".format(
+    settings['classcharts_auth']['user']
+))
+print("export CLASSCHARTS_USERNAME='{}'".format(
+    settings['classcharts_auth']['password']
+))
+
+print()
+
+print("export TRELLO_API_KEY='{}'".format(
+    settings['trello_auth']['api_key']
+))
+print("export TRELLO_API_SECRET='{}'".format(
+    settings['trello_auth']['api_secret']
+))
+print("export TRELLO_OAUTH_TOKEN='{}'".format(
+    settings['trello_auth']['oauth_token']
+))
+print("export TRELLO_OAUTH_TOKEN_SECRET='{}'".format(
+    settings['trello_auth']['oauth_token_secret']
+))
+
+print()
+
+for student in settings['students']:
+    student_num = 1
+    print("export STUDENT_{}='{},{},{},{},{}'".format(
+        student_num,
+        student['classcharts_name'],
+        student['trello_name'],
+        student['trello_board'],
+        student['trello_list'],
+        student['time_slot'],
+    ))
+    student_num += 1
