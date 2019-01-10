@@ -1,15 +1,19 @@
-# Sync Classcharts homework with a Trello Board
+# Sync Classcharts Homework with a Trello Board
 
-Work in progress
+## Installation
 
-To create a configuration file run
+```
+python setup.py install
+```
+
+## Configuration
+
+To create configuration environment variables run:
 
 ```sh
 python generate_config.py
 ```
 
-To synchronise data run
+## To Run
 
-```sh
-python __main__.py [config_file]
-```
+To synchronise data run the command `classcharts_trello_sync`
