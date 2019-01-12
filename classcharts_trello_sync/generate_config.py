@@ -2,7 +2,16 @@
 import json
 from trello import util
 
-from classcharts_trello_sync.interactive_question import Question, YNQuestion
+from .interactive_question import Question, YNQuestion
+from .os_config import (
+    CLASSCHARTS_PASSWORD_ENV,
+    CLASSCHARTS_USERNAME_ENV,
+    STUDENT_PREFIX_ENV,
+    TRELLO_API_KEY_ENV,
+    TRELLO_API_SECRET_ENV,
+    TRELLO_OAUTH_TOKEN_ENV,
+    TRELLO_OAUTH_TOKEN_SECRET_ENV,
+)
 
 
 def configure():
@@ -12,35 +21,50 @@ def configure():
     settings['classcharts_auth'] = configure_classcharts_auth()
     settings['students'] = configure_students()
 
-    print("# Classcharts Environment")
+    print("# Classcharts credentials")
 
-    print("export CLASSCHARTS_USERNAME='{}'".format(
+    print("export {}='{}'".format(
+        CLASSCHARTS_USERNAME_ENV,
         settings['classcharts_auth']['user']
     ))
-    print("export CLASSCHARTS_USERNAME='{}'".format(
+    print("export {}='{}'".format(
+        CLASSCHARTS_PASSWORD_ENV,
         settings['classcharts_auth']['password']
     ))
 
     print()
 
-    print("export TRELLO_API_KEY='{}'".format(
+    print("# The Trello API key and secret are available here: https://trello.com/app-key")
+    print("export {}='{}'".format(
+        TRELLO_API_KEY_ENV,
         settings['trello_auth']['api_key']
     ))
-    print("export TRELLO_API_SECRET='{}'".format(
+    print("export {}='{}'".format(
+        TRELLO_API_SECRET_ENV,
         settings['trello_auth']['api_secret']
     ))
-    print("export TRELLO_OAUTH_TOKEN='{}'".format(
+
+    print()
+
+    print("# Generated OAUTH Token:")
+    print("export {}='{}'".format(
+        TRELLO_OAUTH_TOKEN_ENV,
         settings['trello_auth']['oauth_token']
     ))
-    print("export TRELLO_OAUTH_TOKEN_SECRET='{}'".format(
+    print("export {}='{}'".format(
+        TRELLO_OAUTH_TOKEN_SECRET_ENV,
         settings['trello_auth']['oauth_token_secret']
     ))
 
     print()
 
+    print('# Students have the environment name STUDENT_xxx')
+    print('# The format is Full Classcharts Name, Full Trello Name, Target Trello Board, Target Trello List, Number of minutes per slot')
+
     for student in settings['students']:
         student_num = 1
-        print("export STUDENT_{}='{},{},{},{},{}'".format(
+        print("export {}{}='{},{},{},{},{}'".format(
+            STUDENT_PREFIX_ENV,
             student_num,
             student['classcharts_name'],
             student['trello_name'],

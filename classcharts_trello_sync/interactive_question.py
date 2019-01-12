@@ -8,11 +8,7 @@ class Question:
         default=None
     ):
         self.question_text = question_text
-
-        if help_text:
-            self.help_text = help_text
-        else:
-            self.help_text = question_text
+        self.help_text = help_text
 
         self.transform = transform
         self.validate = validate
@@ -24,14 +20,16 @@ class Question:
 
     def ask(self):
         while True:
-            if self.mandatory:
-                question_text = "{}:\n".format(self.question_text)
-            else:
-                question_text = "{} (default: {}):\n".format(
-                    self.question_text,
-                    self.default
-                )
+            question_text = '\n'
+            question_text += self.question_text
+            if self.help_text:
+                question_text += ' ({})'.format(self.help_text)
+            if self.default:
+                question_text += ' default: {}'.format(self.default)
+            question_text += ':\n'
+
             response = input(question_text)
+
             if len(response) == 0:
                 if self.mandatory:
                     print("Cannot leave this field blank.")

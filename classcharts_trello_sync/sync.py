@@ -2,10 +2,12 @@ from datetime import date, timedelta
 
 from .classcharts_client import ClasschartsClient
 from .limited_trello_client import LimitedTrelloClient
-from .os_config import config
+from .os_config import get_environment_config
 
 
 def sync_data(*args, **kwargs):
+    config = get_environment_config()
+
     classcharts_client = ClasschartsClient(
         username=config['classcharts_auth']['user'],
         password=config['classcharts_auth']['password']
@@ -26,6 +28,8 @@ def sync_data(*args, **kwargs):
     due_homework = [homework for homework in all_homework if not homework.done]
 
     for student in config['students']:
+        print('Syncing {}...'.format(student['classcharts_name']))
+
         for homework in due_homework:
             if homework.student != student['classcharts_name']:
                 continue
@@ -56,6 +60,8 @@ def sync_data(*args, **kwargs):
                     due=homework.due_date.strftime('%Y-%m-%d'),
                     member_names=members
                 )
+        
+        print('{} up to date.'.format(student['classcharts_name']))
 
 
 __all__ = (
