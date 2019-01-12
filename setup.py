@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='classcharts_trello_sync',
-    version='0.0.1',
+    version='0.1.0',
     author='Justin Purrington',
     license='MIT',
     url='https://github.com/jumpertown/classcharts_trello_sync',
@@ -16,7 +16,8 @@ setup(
     packages=['classcharts_trello_sync'],
     entry_points={
         'console_scripts': [
-            'classcharts_trello_sync=classcharts_trello_sync.__main__:main'
-        ],
-    }
+            'classcharts_trello_sync=classcharts_trello_sync:sync_data',
+            'classcharts_trello_sync_configure=classcharts_trello_sync:configure',
+        ]
+    },
 )

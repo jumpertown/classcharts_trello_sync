@@ -1,8 +1,8 @@
 from datetime import date, timedelta
 
-from classcharts_trello_sync.classcharts_client import ClasschartsClient
-from classcharts_trello_sync.limited_trello_client import LimitedTrelloClient
-from classcharts_trello_sync.os_config import config
+from .classcharts_client import ClasschartsClient
+from .limited_trello_client import LimitedTrelloClient
+from .os_config import config
 
 
 def sync_data(*args, **kwargs):
@@ -56,3 +56,8 @@ def sync_data(*args, **kwargs):
                     due=homework.due_date.strftime('%Y-%m-%d'),
                     member_names=members
                 )
+
+
+__all__ = (
+    'sync_data',
+)

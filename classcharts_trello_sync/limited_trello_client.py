@@ -64,3 +64,8 @@ class LimitedTrelloClient:
             for member in board.all_members()
             if member.full_name in member_names
         ]
+
+
+__all__ = (
+    'LimitedTrelloClient',
+)

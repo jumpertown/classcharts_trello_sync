@@ -59,3 +59,9 @@ class YNQuestion(Question):
             validate=lambda x: x in (True, False),
             default=default
         )
+
+
+__all__ = (
+    'Question',
+    'YNQuestion',
+)

@@ -1,5 +1,5 @@
 '''Synchronise data between Classcharts and Trello.'''
-from classcharts_trello_sync.sync import sync_data
+from .sync import sync_data
 
 
 def main():

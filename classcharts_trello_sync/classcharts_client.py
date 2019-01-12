@@ -159,4 +159,9 @@ class ClasschartsClient:
             raise ValueError('Cannot find CSRF token in {}'.format(header_js))
 
         self.csrf_token = match.groups()[0]
-     
+
+
+__all__ = (
+    'ClasschartsClient',
+    'ClasschartsHomework',
+)

@@ -143,3 +143,8 @@ def configure_student():
         'trello_list': trello_list,
         'time_slot': time_slot
     }
+
+
+__all__ = (
+    'configure',
+)
